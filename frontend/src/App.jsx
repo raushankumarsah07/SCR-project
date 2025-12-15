@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  // Use environment variable for API URL
   const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  
   const [name, setName] = useState("");
   const [usage, setUsage] = useState("");
   const [location, setLocation] = useState("");
@@ -114,7 +116,7 @@ function App() {
       setError("");
     } catch (err) {
       console.error("Error fetching data:", err);
-      setError("Unable to connect to backend. Make sure the server is running on port 5000.");
+      setError("Unable to connect to backend. Make sure the server is running.");
     }
   };
 
