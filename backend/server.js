@@ -93,7 +93,7 @@ app.post("/survey", (req, res) => {
       timestamp: req.body.timestamp || new Date().toLocaleString()
     };
     surveys.push(survey);
-    saveSurveys(); // ✅ Save to file
+    saveSurveys();
     console.log("Survey submitted:", survey);
     res.status(200).json({ message: "✅ Survey submitted successfully!", data: survey });
   } catch (err) {
@@ -113,7 +113,7 @@ app.delete("/survey/:id", (req, res) => {
     }
     
     const deleted = surveys.splice(index, 1);
-    saveSurveys(); // ✅ Save to file after deletion
+    saveSurveys();
     console.log("Survey deleted:", deleted[0]);
     res.status(200).json({ message: "✅ Survey deleted successfully!", data: deleted[0] });
   } catch (err) {
@@ -135,7 +135,7 @@ app.post("/issue", (req, res) => {
       timestamp: req.body.timestamp || new Date().toLocaleString()
     };
     issues.push(issue);
-    saveIssues(); // ✅ Save to file
+    saveIssues();
     console.log("Issue reported:", issue);
     res.status(200).json({ message: "✅ Issue reported successfully!", data: issue });
   } catch (err) {
@@ -155,7 +155,7 @@ app.delete("/issue/:id", (req, res) => {
     }
     
     const deleted = issues.splice(index, 1);
-    saveIssues(); // ✅ Save to file after deletion
+    saveIssues();
     console.log("Issue deleted:", deleted[0]);
     res.status(200).json({ message: "✅ Issue deleted successfully!", data: deleted[0] });
   } catch (err) {
@@ -180,7 +180,8 @@ app.get("/data", (req, res) => {
   }
 });
 
-const PORT = 5000;
+// IMPORTANT: Use PORT from environment or default to 5000
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🌍 Backend running at http://localhost:${PORT}`);
   console.log(`✅ Server is ready to accept requests`);

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const API = "http://localhost:5000";
+  const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [name, setName] = useState("");
   const [usage, setUsage] = useState("");
   const [location, setLocation] = useState("");
