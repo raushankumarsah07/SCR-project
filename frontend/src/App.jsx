@@ -11,6 +11,7 @@ function App() {
   const [problem, setProblem] = useState("");
   const [allData, setAllData] = useState({ surveys: [], issues: [] });
   const [error, setError] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     fetchAllData();
@@ -24,6 +25,7 @@ function App() {
         block: "start"
       });
     }
+    setMobileMenuOpen(false); // Close menu after clicking
   };
 
   const submitSurvey = async () => {
@@ -130,7 +132,14 @@ function App() {
             className="logo-img"
           />
         </div>
-        <ul className="nav-links">
+        
+        <button className="hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
           <li><a href="#awareness" onClick={(e) => { e.preventDefault(); smoothScrollTo("awareness"); }}>Awareness</a></li>
           <li><a href="#survey" onClick={(e) => { e.preventDefault(); smoothScrollTo("survey"); }}>Survey</a></li>
           <li><a href="#issues" onClick={(e) => { e.preventDefault(); smoothScrollTo("issues"); }}>Report Issue</a></li>
